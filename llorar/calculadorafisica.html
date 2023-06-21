@@ -1,0 +1,203 @@
+<html>  
+
+    <link rel="stylesheet" href="style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+   
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+
+
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<div style="margin: 24px;">
+		<nav class="navbar navbar-light" style="background-color:7692FF ;">
+			<div class="container">
+				<a class="navbar-brand" href="/">Inicio</a>
+				<ul class="nav navbar-nav">
+					<li>
+						<a href="menu.html">Menu</a>
+					</li>
+					<li>
+						<a href="formulario.html">Formulario</a>
+					</li>
+					<li class="active">
+						<a href="resultado.html">Resultado</a>
+					</li>
+					
+                    <li>
+                        <a href="apimovies.html">Peliculas</a>
+                    </li>
+                    <li>
+                        <a href="calculadora.html">Fisica</a>
+                    </li>
+                    <li>
+                        <a href="calculadorafisica.html">Calculadora</a>
+
+                    </li>
+					<li>
+						<a href="cuestionario.html">cuestionario</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+
+	</div>
+    <body style="background-color: #AFBBF2 ;">
+        <nav class="navbar navbar-light" style="background-color: #90F3FF;">
+            <!-- Navbar content -->
+          </nav>
+    
+        <div class="jumbotron jumbotron-fluid" style="background-color: #EAF9D9;">
+            <div class="container">
+              <h1 class="display-4">Calculadora de Fisica</h1>
+              <p class="lead"></p>
+            </div>
+          </div>
+    <form id="formulario">  
+    <label for="distancia">Distancia:</label>
+    <input type="text" id="distancia" name="distancia">
+    <select id="distanciaUnidad">
+        <option value="metros">metros</option>
+        <option value="pies">pies</option>
+    </select>
+    <br>
+    <label for="distancia">Tiempo:</label>
+    <input type="text" id="tiempo" name="tiempo">
+    <select id="tiempoUnidad">
+        <option value="segundos">segundos</option>
+        <option value="horas">horas</option>
+    </select>
+    <br>
+    <label for="velocidadUnidad">Unidades de velocidad</label>
+    <select id="velocidadUnidad">
+        <option value="metros_por_segundo">m/s</option>
+        <option value="pies_por_segundos">p/s</option>
+        <option value="kilometros_por_hora">km/h</option>
+        <option value="millas_por_horas">mill/h</option>
+    </select>
+    <br>
+    <br>
+    <button type="button" class="btn btn-info" value="Calcular" onclick="Calcular()">Calcular</button>
+    
+    
+    </form>
+    </form>
+    <br>
+    <p id="resultado"></p>
+    <p style="color: #000000; background-color:#E5E1EE">velocidad<span id="valocidad"></span></p>
+    <p style="color: #000000; background-color:#E5E1EE">aceleracion<span id="aceleracion"></span></p>
+    <p style="color: #000000; background-color:#E5E1EE">rapidez<span id="rapidez"></span></p>
+    
+    
+    <script type="text/javascript"> 
+    function Calcular(){ 
+    const distancia = parseFloat(document.getElementById('distancia').value);
+    const tiempo = parseFloat(document.getElementById('tiempo').value);
+    
+    //estas 3 variables son para poner las unidades metricas
+    
+    const distanciaUnidad = document.getElementById('distanciaUnidad').value;
+    const tiempoUnidad = document.getElementById('tiempoUnidad').value;
+    const velocidadUnidad = document.getElementById('velocidadUnidad').value;
+    
+    //Convertir unidades a sistema metrico internalcional (SI)
+    
+    let distanciaSI = 0;
+    let tiempoSI = 0;
+    
+    //dependiendo las unidades que seleccionaron , uso de este if
+    if(distanciaUnidad === 'metros'){ 
+        distanciaSI=distancia;
+    } else if (distanciaUnidad === 'pies'){ 
+        distanciaSI=distancia / 3.281;
+    }
+    if (tiempoUnidad ==='segundos'){ 
+        tiempoSi=tiempo;
+    }else if (tiempoUnidad === 'horas'){ 
+        tiempoSi=tiempo * 3600;
+    }
+    
+    //con elsiguiente codigo voy a calcular la velocidad, aceleracion y rapidez
+    
+    let velocidad = 0;
+    let aceleracion = 0;
+    let rapidez = 0;
+    
+    if(velocidadUnidad === 'metros_por_segundo'){ 
+        velocidad = distanciaSI / tiempoSI;
+        rapidez = velocidad;
+        aceleracion = velocidad / tiempoSI;
+    }
+    else if (velocidadUnidad === 'pies_por_segundo'){ 
+        velocidad = (distanciaSI*3.281) / tiempoSI;
+        rapidez = velocidad;
+        aceleracion = velocidad / tiempoSI;
+    }
+    else if (velocidadUnidad === 'kilometro_por_hora'){ 
+        velocidad = (distanciaSI*1000) / (tiempoSI/3600);
+        rapidez = velocidad;
+        aceleracion = velocidad / tiempoSI;
+    }
+    else if (velocidadUnidad === 'millas_por_hora'){ 
+        velocidad = (distanciaSI/1609) / (tiempoSI/3600);
+        rapidez = velocidad;
+        aceleracion = velocidad / (tiempoSI/3600);
+    }
+    
+    //mostrar los resultados
+    
+    let resultados = ' ';
+    
+    document.getElementById('velocidad').textContent = velocidad.toFixed(4) + ' ' + velocidadUnidad;
+    
+    document.getElementById('aceleracion').textContent = aceleracion.toFixed(4) + ' ' + 'm/s^2';
+    
+    document.getElementById('rapidez').textContent = rapidez.toFixed(4) + ' ' + velocidadUnidad;
+    
+    
+    document.getElementById('resultado').innerHTML = resultado;
+    
+    
+    }
+    </script>
+    
+
+
+                                
+    <footer> 
+        <div class="container"> 
+        <div class="footer-content"> 
+        <div class="footer-section about"> 
+        
+        <h1>Contactame</h1>
+        <p>si estas interesado en contactarme , puedes hacerlo a traves de mis redes sociales:<p/>
+        
+        <div class="contact-links"a> 
+        
+        <a href="http://www.facebook.com/miperfil" target="_blank"><i class ="fab fa-facebook"></i></a>
+        <a href="http://www.facebook.com/miperfil" target="_blank"><i class ="fab fa-facebook"></i></a>
+        <a href="http://www.facebook.com/miperfil" target="_blank"><i class ="fab fa-facebook"></i></a>
+        </div>
+        </div>
+        </div>
+        </div>
+        </footer>
+        
+        </body>
+        </html>
+        
+        
+        <script>
+            const socialnetworks=document.querySelectorAll('.contact-links a');
+            socialnetworks.forEach(link=>{ 
+        link.addEventListener('click' , e =>{ 
+        e.preventDefault();
+        window.open(link.href, '_blank')
+        })
+            })
+        </script>
+</html>
